@@ -1,24 +1,33 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager
+from app.database import Base, engine
+from app.core.config import settings
+from app.routes import auth
 import os
 
+# Import models to ensure they're registered with SQLAlchemy
+from app.models import User, Category, Expense, RecurringExpense, Budget, ApiToken
+
+# Create tables if they don't exist
+Base.metadata.create_all(bind=engine)
+
 app = FastAPI(
-    title="Masroufi - Expense Tracker",
-    version="1.0.0",
+    title=settings.API_TITLE,
+    version=settings.API_VERSION,
     description="Application de suivi des dépenses personnelles"
 )
 
 # CORS configuration
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:5173").split(",")
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origins=settings.ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include routes
+app.include_router(auth.router)
 
 @app.get("/health")
 async def health_check():
@@ -26,7 +35,7 @@ async def health_check():
 
 @app.get("/api/v1/health")
 async def api_health_check():
-    return {"status": "ok", "version": "1.0.0"}
+    return {"status": "ok", "version": settings.API_VERSION}
 
 if __name__ == "__main__":
     import uvicorn
