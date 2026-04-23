@@ -1,0 +1,128 @@
+:root {
+  --bg: #F7F6F3;
+  --surface: #FFFFFF;
+  --surface2: #F0EEE9;
+  --border: rgba(0, 0, 0, 0.08);
+  --border2: rgba(0, 0, 0, 0.13);
+  --text: #1A1917;
+  --text2: #6B6860;
+  --text3: #A09E99;
+  --accent: #1D4ED8;
+  --accent-light: #EEF2FF;
+  --accent-text: #1E40AF;
+  --green: #16A34A;
+  --green-light: #F0FDF4;
+  --green-text: #15803D;
+  --red: #DC2626;
+  --red-light: #FEF2F2;
+  --red-text: #B91C1C;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 14px;
+  transition: all 0.15s ease;
+}
+
+button.primary {
+  background-color: var(--text);
+  color: white;
+}
+
+button.primary:hover {
+  opacity: 0.9;
+}
+
+button.secondary {
+  background-color: transparent;
+  color: var(--text2);
+  border: 0.5px solid var(--border2);
+}
+
+button.secondary:hover {
+  background-color: var(--surface2);
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 8px 12px;
+  border: 0.5px solid var(--border2);
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+/* Utility classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.badge.success {
+  background-color: var(--green-light);
+  color: var(--green-text);
+}
+
+.badge.warning {
+  background-color: var(--red-light);
+  color: var(--red-text);
+}
+
+.text-muted {
+  color: var(--text3);
+}
