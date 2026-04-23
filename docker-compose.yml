@@ -1,0 +1,56 @@
+services:
+  db:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_USER: masroufi_dev
+      POSTGRES_PASSWORD: masroufi_dev_password
+      POSTGRES_DB: masroufi_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U masroufi_dev -d masroufi_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - masroufi-net
+
+  app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgresql://masroufi_dev:masroufi_dev_password@db:5432/masroufi_db
+      ENVIRONMENT: development
+      SECRET_KEY: dev-secret-key-change-in-prod
+      ALLOWED_ORIGINS: http://localhost:3000,http://localhost:5173,http://127.0.0.1:5173
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - masroufi-net
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "3000:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
+    networks:
+      - masroufi-net
+
+volumes:
+  postgres_data:
+
+networks:
+  masroufi-net:
+    driver: bridge
