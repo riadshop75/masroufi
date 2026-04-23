@@ -1,0 +1,3 @@
+# Git backups and patches
+*.bundle
+patches/
