@@ -58,3 +58,13 @@ def decode_token(token: str) -> dict:
             detail="Invalid token",
             headers={"WWW-Authenticate": "Bearer"},
         )
+
+def generate_api_token() -> str:
+    import secrets
+    return f"masroufi_{''.join(secrets.choice('0123456789abcdefghijklmnopqrstuvwxyz') for _ in range(32))}"
+
+def hash_api_token(token: str) -> str:
+    return pwd_context.hash(token)
+
+def verify_api_token(plain_token: str, hashed_token: str) -> bool:
+    return pwd_context.verify(plain_token, hashed_token)

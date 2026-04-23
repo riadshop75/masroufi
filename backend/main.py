@@ -28,6 +28,18 @@ app.add_middleware(
 
 # Include routes
 app.include_router(auth.router)
+from app.routes import expenses, categories, budgets, recurring, dashboard, export, api_tokens
+app.include_router(expenses.router)
+app.include_router(categories.router)
+app.include_router(budgets.router)
+app.include_router(recurring.router)
+app.include_router(dashboard.router)
+app.include_router(export.router)
+app.include_router(api_tokens.router)
+
+# Start recurring expenses scheduler
+from app.tasks.recurring_worker import start_scheduler
+scheduler = start_scheduler()
 
 @app.get("/health")
 async def health_check():
