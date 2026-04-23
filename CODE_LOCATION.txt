@@ -1,0 +1,161 @@
+📍 LOCALISATION COMPLÈTE DU PROJET MASROUFI
+===========================================
+
+CHEMIN ABSOLU : /home/user/masroufi
+
+TAILLE TOTALE : 2.1 MB
+- Backend : 216 KB (39 fichiers Python)
+- Frontend : 132 KB (16 fichiers React/TypeScript)
+- Docs : 26 KB
+- Backups : 198 KB
+
+═══════════════════════════════════════════════════════════════
+
+📂 STRUCTURE COMPLÈTE
+═══════════════════════════════════════════════════════════════
+
+/home/user/masroufi/
+├── 📂 backend/                    → API FastAPI + Base de données
+│   ├── main.py                   → Entrypoint FastAPI
+│   ├── requirements.txt           → Dépendances Python
+│   ├── Dockerfile               → Image backend
+│   ├── 📂 app/
+│   │   ├── database.py          → Connexion SQLAlchemy
+│   │   ├── security.py          → JWT + password hashing
+│   │   ├── dependencies.py      → Middleware authentification
+│   │   ├── 📂 models/           → 6 modèles SQLAlchemy
+│   │   │   ├── user.py, category.py, expense.py
+│   │   │   ├── recurring_expense.py, budget.py
+│   │   │   └── api_token.py
+│   │   ├── 📂 routes/           → 7 routers API (28 endpoints)
+│   │   │   ├── auth.py, expenses.py, categories.py
+│   │   │   ├── budgets.py, recurring.py, dashboard.py
+│   │   │   ├── export.py, api_tokens.py
+│   │   ├── 📂 schemas/          → Schémas Pydantic validation
+│   │   ├── 📂 tasks/            → APScheduler recurring tasks
+│   │   ├── 📂 utils/            → Exporters PDF/CSV
+│   │   ├── 📂 core/             → Configuration
+│   │   └── 📂 __init__.py
+│   ├── 📂 alembic/              → Migrations Alembic
+│   │   ├── env.py               → Configuration migrations
+│   │   ├── script.py.mako       → Template migrations
+│   │   └── 📂 versions/
+│   │       └── 001_initial_schema.py → Schéma initial BD
+│   ├── MIGRATIONS.md            → Guide migrations
+│   └── TESTING_AUTH.md          → Tests endpoints
+
+├── 📂 frontend/                  → UI React + Vite
+│   ├── package.json             → Dépendances npm
+│   ├── vite.config.ts           → Config Vite
+│   ├── tsconfig.json            → Config TypeScript
+│   ├── index.html               → HTML entry point
+│   ├── 📂 src/
+│   │   ├── main.tsx             → React entry point
+│   │   ├── App.tsx              → App Router principal
+│   │   ├── index.css            → Styles globaux
+│   │   ├── 📂 pages/            → 8 pages React
+│   │   │   ├── LoginPage.tsx, SignupPage.tsx
+│   │   │   ├── DashboardPage.tsx, ExpensesPage.tsx
+│   │   │   ├── CategoriesPage.tsx, BudgetsPage.tsx
+│   │   │   └── ExportPage.tsx
+│   │   ├── 📂 api/              → Axios client
+│   │   │   └── client.ts        → HTTP client + intercepteurs JWT
+│   │   ├── 📂 context/          → Context API
+│   │   │   └── AuthContext.tsx  → Authentification context
+│   │   ├── 📂 types/            → Interfaces TypeScript
+│   │   │   └── index.ts
+│   │   ├── 📂 hooks/            → React Hooks (React Query)
+│   │   ├── 📂 components/       → Composants réutilisables
+│   │   ├── 📂 utils/            → Utilitaires
+│   │   └── 📂 styles/           → Styles supplémentaires
+│   └── README.md                → Setup frontend
+
+├── 🐳 docker-compose.yml        → Orchestration services
+├── 🐳 Dockerfile                → Image FastAPI
+├── 🔧 nginx.conf                → Reverse proxy config
+├── .env.example                 → Variables d'environnement
+├── .dockerignore                → Fichiers à ignorer Docker
+├── .gitignore                   → Fichiers à ignorer Git
+
+├── 📚 DOCUMENTATION
+│   ├── FINAL_SUMMARY.md         → Résumé final complet
+│   ├── IMPLEMENTATION_SUMMARY.md → Plan d'implémentation détaillé
+│   ├── SETUP.md                 → Instructions démarrage
+│   └── README.md                → Info projet
+
+├── 💾 BACKUPS (portables)
+│   ├── masroufi-final-backup.bundle              (99 KB)
+│   ├── masroufi-implementation-backup.bundle     (99 KB)
+│   └── 📂 patches/              → 8 fichiers .patch
+
+└── 📂 .git/                     → Historique Git (9 commits)
+    └── config                   → Configuration git local
+
+═══════════════════════════════════════════════════════════════
+
+🔍 ACCÉDER AU CODE
+═══════════════════════════════════════════════════════════════
+
+En ligne de commande :
+$ cd /home/user/masroufi
+$ ls -la
+
+Git history :
+$ git log --oneline
+$ git show <commit-sha>
+
+Backend source :
+$ code backend/  ou  cat backend/main.py
+
+Frontend source :
+$ code frontend/src/  ou  cat frontend/src/App.tsx
+
+Configuration :
+$ cat docker-compose.yml
+$ cat .env.example
+
+═══════════════════════════════════════════════════════════════
+
+📊 STATISTIQUES
+═══════════════════════════════════════════════════════════════
+
+Code Lines (approx):
+- Backend Python: ~2500 lignes
+- Frontend TypeScript: ~1200 lignes
+- Migrations SQL: ~200 lignes
+- Config/Docs: ~1000 lignes
+
+Fichiers:
+- 39 fichiers Python (backend)
+- 16 fichiers TypeScript (frontend)
+- 9 commits Git
+- 4 documents markdown
+
+Commits:
+1. Jalon 1.1 : Infrastructure Docker & PostgreSQL
+2. Jalon 1.2 : Modèle de données & migrations Alembic
+3. Jalon 2.1 : Setup FastAPI + Authentification JWT
+4. Jalons 2.2-2.7 : Backend complet (28 endpoints)
+5. Jalon 3.1 : React + Vite Setup
+6. Jalons 3.2-3.7 : Frontend complet (8 pages)
+7. Documentation summaries
+8. .gitignore
+9. Backups/patches
+
+═══════════════════════════════════════════════════════════════
+
+⚙️ POUR DÉMARRER
+═══════════════════════════════════════════════════════════════
+
+Backend + PostgreSQL :
+$ docker compose up -d
+
+Frontend (autre terminal) :
+$ cd frontend && npm install && npm run dev
+
+Accès :
+- API : http://localhost:8000
+- Frontend : http://localhost:5173
+- Swagger docs : http://localhost:8000/docs
+
+═══════════════════════════════════════════════════════════════
